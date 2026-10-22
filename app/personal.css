@@ -190,6 +190,9 @@ html[data-theme="dark"] ::selection {
   }
 }
 .hero-portrait-mask img {
+  filter: none;
+}
+html[data-theme="dark"] .hero-portrait-mask img {
   filter: grayscale(1) brightness(0.72) contrast(1.15);
 }
 .hero-portrait-mask img {

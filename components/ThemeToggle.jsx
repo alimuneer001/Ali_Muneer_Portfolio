@@ -2,62 +2,19 @@
 
 import { useEffect, useState } from "react";
 
-const storageKey = "ali-portfolio-theme";
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState("light");
   useEffect(() => {
-    const system = matchMedia("(prefers-color-scheme: dark)");
-    let preference;
-    const apply = (value) => {
-      setTheme(value);
-      document.documentElement.dataset.theme = value;
-      document.documentElement.style.colorScheme = value;
-      document
-        .querySelector('meta[name="theme-color"]')
-        ?.setAttribute("content", value === "dark" ? "#101113" : "#FAFAFA");
-    };
-    const readPreference = () => {
-      try {
-        preference = localStorage.getItem(storageKey);
-      } catch {
-        preference = null;
-      }
-      if (!["light", "dark"].includes(preference)) preference = null;
-      apply(preference || (system.matches ? "dark" : "light"));
-    };
-    const onSystem = () => {
-      if (!preference) readPreference();
-    };
-    const onStorage = (event) => {
-      if (event.key === storageKey || event.key === null) readPreference();
-    };
-    readPreference();
-    system.addEventListener("change", onSystem);
-    window.addEventListener("storage", onStorage);
-    window.addEventListener("portfolio-theme-change", readPreference);
-    return () => {
-      system.removeEventListener("change", onSystem);
-      window.removeEventListener("storage", onStorage);
-      window.removeEventListener("portfolio-theme-change", readPreference);
-    };
-  }, []);
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute(
+      "content", theme === "dark" ? "#101113" : "#FAFAFA"
+    );
+  }, [theme]);
   function toggle() {
-    const next =
-      document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    document.documentElement.dataset.theme = next;
-    document.documentElement.style.colorScheme = next;
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", next === "dark" ? "#101113" : "#FAFAFA");
-    setTheme(next);
-    try {
-      localStorage.setItem(storageKey, next);
-      window.dispatchEvent(new Event("portfolio-theme-change"));
-    } catch {}
+    setTheme(current => current === "dark" ? "light" : "dark");
   }
-  const label = theme
-    ? `Switch to ${theme === "dark" ? "light" : "dark"} mode`
-    : "Toggle color theme";
+  const label = `Switch to ${theme === "dark" ? "light" : "dark"} mode`;
   return (
     <button
       id="theme-toggle"

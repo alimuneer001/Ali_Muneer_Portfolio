@@ -1,6 +1,6 @@
 # Ali Muneer — Next.js portfolio
 
-Next.js 16 App Router, React 19, and compiled Tailwind CSS 3. Preserves the Echo layout, dark monochrome portrait, light/dark toggle, project carousel, 3D showcase and scroll animations.
+Next.js 16 App Router, React 19, and compiled Tailwind CSS 3. Preserves the Echo layout, original-color portrait in light mode, monochrome portrait in dark mode, light/dark toggle, project carousel, 3D showcase and scroll animations.
 
 ## Run
 
@@ -34,3 +34,5 @@ npm start
 The original `dist/` is a frozen pre-migration backup, not the current application or deployment output. `migrate-next.py` and `personalize.py` are one-time migration history; do not rerun them over current source changes.
 
 The contact form opens an email draft; it does not send or store submissions. Google Fonts and OGL use external CDNs. Tailwind is compiled at build time and no longer uses its runtime CDN.
+
+Every page load starts in light mode. Theme changes apply only to the current visit; saved and system theme preferences are intentionally ignored.
