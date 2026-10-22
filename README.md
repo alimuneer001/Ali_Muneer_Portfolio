@@ -19,7 +19,7 @@ npm run check
 npm start
 ```
 
-`next build` generates the static website in `out/`. `npm start` serves that export using Python. On Vercel, import this repository as Next.js; the build command is `npm run build` and static output is `out`. No backend or environment variables are needed.
+`next build` generates the Next.js application in `.next/`. `npm start` runs the production Node.js server. On Vercel select the Next.js preset, use `npm run build`, and leave Output Directory at the framework default (remove an existing `out` override). The contact API requires the SMTP variables below.
 
 ## Source
 
@@ -33,7 +33,7 @@ npm start
 
 Legacy static copies, migration scripts and unreferenced template assets have been removed. Edit `app/`, `components/` and `public/`; `.next/` and `out/` are generated and ignored by Git.
 
-The contact form opens an email draft; it does not send or store submissions. Google Fonts and OGL use external CDNs. Tailwind is compiled at build time and no longer uses its runtime CDN.
+The contact form posts to `/api/contact/` and sends email through Nodemailer. It does not store submissions. Google Fonts and OGL use external CDNs. Tailwind is compiled at build time and no longer uses its runtime CDN.
 
 Every page load starts in light mode. Theme changes apply only to the current visit; saved and system theme preferences are intentionally ignored.
 # Ali_Muneer_Portfolio
@@ -43,4 +43,16 @@ Every page load starts in light mode. Theme changes apply only to the current vi
 
 Small screens use a readable vertical career timeline, expanded About section and a project card grid. Desktop retains the scroll effects and 3D showcase. Reduced-motion settings use the same static layouts. Project effects load when their sections approach the viewport.
 
-Nodemailer is installed for the planned email integration, but the contact form still opens an email draft. SMTP and the server endpoint are not configured.
+## Email setup on Vercel
+
+1. For Gmail, enable 2-Step Verification and create an app password at https://myaccount.google.com/apppasswords. Use the app password without spaces, not your Google login password.
+2. In Vercel Project Settings > Environment Variables, add the values from `.env.example`. Set `SMTP_PASS` as a secret. Select Production (and Preview if you want preview forms to send).
+3. Push this updated code and redeploy. Environment changes apply only to new deployments.
+4. Submit the contact form and confirm the message arrives in your inbox. Replies should go to the visitor.
+
+For local use, copy `.env.example` to `.env.local`, fill the password and restart `npm run dev`. Never commit credentials or use a NEXT_PUBLIC_ prefix for SMTP values.
+
+The sender must be an address permitted by your SMTP provider. Port 465 uses TLS; port 587 requires STARTTLS. A honeypot, size limits, validation, same-origin checks and an instance-local five-attempt throttle are included. The throttle resets on cold starts and is not shared across Vercel instances; configure a Vercel Firewall rate limit for `/api/contact/` for stronger spam protection.
+
+Run `npm test` for mocked email tests (no mail is sent), then `npm run build` and `npm run check`. Real delivery requires SMTP credentials and a manual inbox check. The old Sites static deployment is not compatible with this Node.js email endpoint; deploy this version to Vercel.
+

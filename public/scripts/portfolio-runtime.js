@@ -166,17 +166,6 @@
       }
     });
 
-    function submitContactForm(e) {
-      e.preventDefault();
-      const name = document.getElementById('contact-name').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const service = document.getElementById('contact-service').value;
-      const message = document.getElementById('contact-message').value.trim();
-      const subject = encodeURIComponent(service + ' inquiry from ' + name);
-      const body = encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email);
-      window.location.href = 'mailto:alimuneer001@gmail.com?subject=' + subject + '&body=' + body;
-      showToast('Email draft opened. Send it from your email app to contact Ali.');
-    }
 
 
     function toggleMobileMenu() {

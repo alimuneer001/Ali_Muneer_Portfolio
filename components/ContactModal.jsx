@@ -1,6 +1,28 @@
 "use client";
+import { useRef, useState } from "react";
 
 export default function ContactModal() {
+  const [status, setStatus] = useState({ type: 'idle', message: '' });
+  const pending = useRef(false);
+  async function submit(event) {
+    event.preventDefault();
+    if (pending.current) return;
+    const form = event.currentTarget;
+    const values = Object.fromEntries(new FormData(form));
+    pending.current = true;
+    setStatus({ type: 'sending', message: 'Sending your message...' });
+    try {
+      const result = await fetch('/api/contact/', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values),
+      });
+      const data = await result.json();
+      if (!result.ok) throw new Error(data.message || 'Unable to send your message.');
+      setStatus({ type: 'success', message: data.message });
+      form.reset();
+    } catch (error) {
+      setStatus({ type: 'error', message: error.message || 'Unable to connect. Please try again.' });
+    } finally { pending.current = false; }
+  }
   return (
     <div
       id="contact-modal"
@@ -31,14 +53,12 @@ export default function ContactModal() {
         </div>
         <p className="text-xs text-neutral-500 mb-5">
           {
-            "Opens an email draft to alimuneer001@gmail.com. You send it from your email app."
+            "Tell me about your project. Your message goes directly to my inbox."
           }
         </p>
         <form
           id="contact-form"
-          onSubmit={(event) => {
-            window.submitContactForm?.(event);
-          }}
+          onSubmit={submit}
           className="space-y-4"
         >
           <div>
@@ -47,7 +67,7 @@ export default function ContactModal() {
             </label>
             <input
               type="text"
-              id="contact-name" autoComplete="name" maxLength={100}
+              id="contact-name" name="name" autoComplete="name" maxLength={100}
               required
               placeholder="John Doe"
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm"
@@ -59,7 +79,7 @@ export default function ContactModal() {
             </label>
             <input
               type="email"
-              id="contact-email" autoComplete="email" maxLength={254}
+              id="contact-email" name="email" autoComplete="email" maxLength={254}
               required
               placeholder="john@company.com"
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm"
@@ -70,7 +90,7 @@ export default function ContactModal() {
               {"Service Required"}
             </label>
             <select
-              id="contact-service"
+              id="contact-service" name="service"
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm bg-white"
             >
               <option value="Full Stack Applications">
@@ -88,18 +108,22 @@ export default function ContactModal() {
               {"Message"}
             </label>
             <textarea
-              id="contact-message"
-              rows="3"
+              id="contact-message" name="message"
+              rows="3" minLength={10} maxLength={5000}
               required
               placeholder="Tell me about your project, goals, and timeline..."
               className="w-full px-4 py-2 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm"
             ></textarea>
           </div>
+          <div hidden aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+          <p role="status" aria-live="polite" className="text-sm text-neutral-600">{status.message}</p>
+          {status.type === 'error' && <a className="block text-sm underline" href="mailto:alimuneer001@gmail.com">Email alimuneer001@gmail.com</a>}
           <button
+            disabled={status.type === 'sending'}
             type="submit"
-            className="w-full py-3 bg-black text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-neutral-800 transition"
+            className="w-full py-3 bg-black text-white rounded-xl text-xs font-bold tracking-widest uppercase hover:bg-neutral-800 transition disabled:opacity-50 disabled:cursor-wait"
           >
-            {"\n          OPEN EMAIL DRAFT\n        "}
+            {status.type === 'sending' ? 'Sending...' : 'Send message'}
           </button>
         </form>
       </div>
