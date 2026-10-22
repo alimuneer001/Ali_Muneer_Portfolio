@@ -62,7 +62,7 @@ export default function Contact() {
         </div>
         <a
           className="text-xs uppercase tracking-widest underline mb-8"
-          href="/assets/Ali Resume Page.pdf"
+          href="/assets/Ali%20Muneer%20Resume%20MERN.pdf"
           download="Ali_Muneer_Resume.pdf"
         >
           {"Download my CV ↗"}
