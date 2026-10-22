@@ -68,6 +68,10 @@ export default function About() {
                   id="sem-media-overlay"
                   className="absolute inset-0 bg-gradient-to-b from-black/75 via-transparent to-black/85 rounded-xl transition-opacity duration-150 pointer-events-none"
                 ></div>
+                <h2 id="sem-title-group" className="font-black text-white uppercase tracking-tight pointer-events-none">
+                  <span id="sem-title-first">ABOUT</span>
+                  <span id="sem-title-rest">ME</span>
+                </h2>
                 <div
                   id="sem-media-content"
                   className="absolute inset-0 z-20 flex flex-col justify-between p-5 sm:p-7 md:p-9 pointer-events-none opacity-0 transition-all duration-300 select-none"
@@ -153,25 +157,7 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div
-              className="flex items-center justify-center text-center gap-2 sm:gap-4 w-full relative z-10 pointer-events-none flex-col"
-              style={{ willChange: "transform", backfaceVisibility: "hidden" }}
-            >
-              <h2
-                id="sem-title-first"
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight transition-none drop-shadow-2xl"
-                style={{ willChange: "transform, opacity" }}
-              >
-                {"\n              ABOUT\n            "}
-              </h2>
-              <h2
-                id="sem-title-rest"
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight transition-none drop-shadow-2xl"
-                style={{ willChange: "transform, opacity" }}
-              >
-                {"\n              ME\n            "}
-              </h2>
-            </div>
+
           </div>
         </div>
       </div>

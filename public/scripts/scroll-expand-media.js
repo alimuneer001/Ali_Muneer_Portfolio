@@ -69,14 +69,14 @@ export function initScrollExpandMedia() {
       mediaOverlay.style.opacity = Math.max(0.3, 0.8 - progress * 0.4).toFixed(3);
     }
 
-    // Title words translate outward and fade
+    // Fade the title within the card instead of pushing it beyond the edges
     const titleOpacity = Math.max(0, 1 - progress * 1.6).toFixed(3);
     if (titleFirst) {
-      titleFirst.style.transform = `translateX(-${textTranslateX}vw) translateZ(0)`;
+      titleFirst.style.transform = `translateY(-${(progress * 12).toFixed(1)}px)`;
       titleFirst.style.opacity = titleOpacity;
     }
     if (titleRest) {
-      titleRest.style.transform = `translateX(${textTranslateX}vw) translateZ(0)`;
+      titleRest.style.transform = `translateY(${(progress * 12).toFixed(1)}px)`;
       titleRest.style.opacity = titleOpacity;
     }
 

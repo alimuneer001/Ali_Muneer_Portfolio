@@ -41,7 +41,6 @@ html[data-theme="dark"] .showcase-card { border-color: #494c53; background: #1b1
   #about { min-height: 0 !important; padding: 48px clamp(16px, 4vw, 56px); }
   #about > div, #about .container, #about .container > div { position: relative; height: auto; }
   #about .container > div { display: flex; flex-direction: column-reverse; gap: 24px; }
-  #about .container > div > div:last-child { flex-direction: row; }
   #sem-title-first, #sem-title-rest { opacity: 1 !important; transform: none !important; font-size: clamp(2rem, 6vw, 4rem); }
   #sem-bg-img { opacity: .18 !important; }
   #sem-media-container { position: relative; top: auto; left: auto; width: 100% !important; height: auto !important; max-width: 100% !important; max-height: none !important; transform: none; }
@@ -117,4 +116,18 @@ html[data-theme="dark"] .showcase-card { border-color: #494c53; background: #1b1
   .floating-contact { flex-direction: row; }
   .floating-contact a { padding: 12px; }
   .floating-contact span { display: none; }
+}
+
+/* The heading belongs to the card, so its size and clipping follow the card. */
+#sem-media-container { container-type: inline-size; }
+#sem-title-group {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; width: 100%; padding: 24px; text-align: center;
+  font-size: clamp(24px, 18cqw, 56px); line-height: 1.1;
+}
+#sem-title-first, #sem-title-rest { display: block; font-size: inherit; max-width: 100%; }
+@media (max-width: 1023px), (max-height: 600px), (prefers-reduced-motion: reduce) {
+  #sem-title-group { position: relative; inset: auto; flex-direction: row; flex-wrap: wrap; padding: 28px 20px 8px; font-size: clamp(24px, 7cqw, 42px); }
+  #sem-title-first, #sem-title-rest { font-size: inherit; }
 }
