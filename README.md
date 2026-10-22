@@ -1,9 +1,36 @@
-# Ali Muneer portfolio
+# Ali Muneer — Next.js portfolio
 
-Echo's original monochrome layout and animation components personalized with content from Ali's existing portfolio.
+Next.js 16 App Router, React 19, and compiled Tailwind CSS 3. Preserves the Echo layout, dark monochrome portrait, light/dark toggle, project carousel, 3D showcase and scroll animations.
 
-Run `npm run dev` and open http://localhost:8080. Deploy the `dist` folder to a static host, including Vercel. The original ECHO-WEBSITE directory is unchanged.
+## Run
 
-Edit project content in `dist/portfolio-data.js`, page copy in `dist/index.html`, and responsive overrides in `dist/personal.css`.
+```sh
+npm install
+npm run dev
+```
 
-The contact form opens an email draft; it does not send or store submissions. Resume, portrait and project screenshots are local assets. Tailwind, Google Fonts and OGL currently use external CDNs.
+Open http://127.0.0.1:3000. On Windows PowerShell, use `npm.cmd` instead of `npm` if script execution is restricted.
+
+## Build and deploy
+
+```sh
+npm run build
+npm run check
+npm start
+```
+
+`next build` generates the static website in `out/`. `npm start` serves that export using Python. On Vercel, import this repository as Next.js; the build command is `npm run build` and static output is `out`. No backend or environment variables are needed.
+
+## Source
+
+- `app/page.jsx`: page composition and animation runtime loading.
+- `app/layout.jsx`: metadata, font loading and initial theme selection.
+- `components/`: editable React sections and React theme toggle.
+- `app/globals.css`, `app/personal.css`, `app/carousel.css`: styles.
+- `public/scripts/portfolio-data.js`: project copy, screenshots and live links.
+- `public/scripts/`: retained browser animation engines and interactions, loaded after hydration via Next Script.
+- `public/assets/`: portrait, project images, resume and artwork.
+
+The original `dist/` is a frozen pre-migration backup, not the current application or deployment output. `migrate-next.py` and `personalize.py` are one-time migration history; do not rerun them over current source changes.
+
+The contact form opens an email draft; it does not send or store submissions. Google Fonts and OGL use external CDNs. Tailwind is compiled at build time and no longer uses its runtime CDN.
