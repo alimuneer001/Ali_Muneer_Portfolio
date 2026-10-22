@@ -4,6 +4,13 @@ import "./personal.css";
 import "./responsive.css";
 
 export const metadata = {
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
+      { url: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   title: "Ali Muneer — Full Stack Developer (MERN)",
   description:
     "Ali Muneer, Full Stack Developer (MERN) and part-time remote Full Stack Engineer at Blink Hint, based in Lahore, Pakistan. React, Next.js, Node.js and MERN applications.",

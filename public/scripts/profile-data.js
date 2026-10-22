@@ -65,8 +65,7 @@ export const SKILLS = {
     "TypeScript",
     "React.js",
     "Next.js",
-    "Tailwind CSS",
-    "jQuery"
+    "Tailwind CSS"
   ],
   "Backend": [
     "Node.js",
