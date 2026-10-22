@@ -34,7 +34,7 @@ function place(ringDeg, drumDeg, ringR, drumR, bow, m) {
   );
 }
 
-export const DEFAULT_WORKS = [1,2,3,4].map(i => PROJECTS[i]);
+export const DEFAULT_WORKS = [1,2,3,4,6,7].map(i => PROJECTS[i]);
 
 export function initWorksWheel(container, options = {}) {
   if (!container) return null;

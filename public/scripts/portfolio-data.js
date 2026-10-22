@@ -89,5 +89,35 @@ export const PROJECTS = [
       "Quote Enquiries",
       "Service Coverage"
     ]
+  },
+  {
+    "title": "Rankvi",
+    "subtitle": "SEO & GEO Agency Website",
+    "src": "/assets/rankvi.svg",
+    "image": "/assets/rankvi.svg",
+    "alt": "Rankvi project cover with an organic growth illustration",
+    "link": "https://rankvi.com/",
+    "href": "https://rankvi.com/",
+    "description": "SEO and GEO agency website presenting industry-specific services for manufacturing, chauffeur companies, contractors and mobile bartending businesses, with service pages, case studies and consultation enquiries.",
+    "deliverables": [
+      "Industry-specific service pages",
+      "Case studies and insights",
+      "Consultation enquiry flow"
+    ]
+  },
+  {
+    "title": "Lux Chauffeur",
+    "subtitle": "Electric Chauffeur Services",
+    "src": "/assets/luxchauffeur.svg",
+    "image": "/assets/luxchauffeur.svg",
+    "alt": "Lux Chauffeur project cover with an executive vehicle illustration",
+    "link": "https://luxchauffeur.co.uk/",
+    "href": "https://luxchauffeur.co.uk/",
+    "description": "Luxury electric chauffeur website for Milton Keynes, showcasing Mercedes vehicles, airport transfers, business travel, weddings and events, with journey quote enquiries and direct contact options.",
+    "deliverables": [
+      "Electric fleet showcase",
+      "Airport and chauffeur service pages",
+      "Journey quote and contact flow"
+    ]
   }
 ];
