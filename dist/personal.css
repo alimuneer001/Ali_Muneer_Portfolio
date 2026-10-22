@@ -1,0 +1,40 @@
+:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+.hero-portrait-mask img { filter: grayscale(1); }
+.hero-portrait-mask img { border-radius:45% 45% 0 0; }
+a[title="WhatsApp"] svg, a[title="Upwork"] svg { display:none; }
+a[title="WhatsApp"]::before { content:'WA'; font-size:10px; font-weight:800; }
+a[title="Upwork"]::before { content:'Up'; font-size:12px; font-weight:800; }
+#sem-media-content { overflow-y: auto; }
+#sem-media-content .min-h-\[140px\] { min-height: 20px; }
+.project-links { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:24px; }
+.project-links button { border:1px solid #d4d4d4; border-radius:999px; padding:10px 16px; font-size:11px; font-weight:700; }
+.project-links button:hover { background:#121212; color:white; }
+@media (min-width:768px) and (max-width:1199px) {
+  [data-purpose="site-navigation"] nav { display:none; }
+  #mobile-menu-btn { display:flex; }
+}
+@media (max-width:767px) {
+  #hero-title { font-size:15vw; }
+  .hero-portrait-mask { width:280px; height:340px; }
+  #home .md\:col-span-6 { margin-top:-30px; }
+  #home .md\:col-span-3 { padding-top:20px; }
+  #sem-media-content { padding:16px; }
+  #sem-media-content .shrink-0 { flex-shrink:1; }
+  #sem-media-content .tracking-widest { letter-spacing:.06em; }
+  #sem-media-content p { font-size:10px; }
+  #sem-media-content .min-h-\[140px\] { display:none; }
+  #sem-media-content .pt-3 { gap:10px; }
+  #sem-media-content a { padding:8px 12px; font-size:10px; }
+  #flex-carousel-container { height:420px !important; }
+  #experience .exp-panel { padding:24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto !important; }
+  *, *::before, *::after { animation:none !important; transition:none !important; }
+  #experience { height:auto !important; }
+  #exp-sticky-viewport { position:relative; height:auto; }
+  #exp-horizontal-stage { width:100% !important; display:block; transform:none !important; }
+  .exp-panel { padding-top:60px !important; padding-bottom:60px !important; }
+  #about { min-height:0 !important; }
+  #about > div { position:relative; }
+}
