@@ -20,6 +20,7 @@ export default function ContactModal() {
             </h3>
           </div>
           <button
+            aria-label="Close contact form"
             onClick={(event) => {
               window.closeContactModal?.();
             }}
@@ -41,31 +42,31 @@ export default function ContactModal() {
           className="space-y-4"
         >
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
+            <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
               {"Your Name"}
             </label>
             <input
               type="text"
-              id="contact-name"
+              id="contact-name" autoComplete="name" maxLength={100}
               required
               placeholder="John Doe"
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm"
             />
           </div>
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
+            <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
               {"Email Address"}
             </label>
             <input
               type="email"
-              id="contact-email"
+              id="contact-email" autoComplete="email" maxLength={254}
               required
               placeholder="john@company.com"
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm"
             />
           </div>
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
+            <label htmlFor="contact-service" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
               {"Service Required"}
             </label>
             <select
@@ -83,7 +84,7 @@ export default function ContactModal() {
             </select>
           </div>
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
+            <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">
               {"Message"}
             </label>
             <textarea

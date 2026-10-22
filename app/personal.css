@@ -271,49 +271,6 @@ a[title="Upwork"]::before {
     display: flex;
   }
 }
-@media (max-width: 767px) {
-  #hero-title {
-    font-size: 15vw;
-  }
-  .hero-portrait-mask {
-    width: 280px;
-    height: 340px;
-  }
-  #home .md\:col-span-6 {
-    margin-top: -30px;
-  }
-  #home .md\:col-span-3 {
-    padding-top: 20px;
-  }
-  #sem-media-content {
-    padding: 16px;
-  }
-  #sem-media-content .shrink-0 {
-    flex-shrink: 1;
-  }
-  #sem-media-content .tracking-widest {
-    letter-spacing: 0.06em;
-  }
-  #sem-media-content p {
-    font-size: 10px;
-  }
-  #sem-media-content .min-h-\[140px\] {
-    display: none;
-  }
-  #sem-media-content .pt-3 {
-    gap: 10px;
-  }
-  #sem-media-content a {
-    padding: 8px 12px;
-    font-size: 10px;
-  }
-  #flex-carousel-container {
-    height: 420px !important;
-  }
-  #experience .exp-panel {
-    padding: 24px;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;

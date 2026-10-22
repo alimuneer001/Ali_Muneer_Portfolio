@@ -4,7 +4,7 @@ import { PROJECTS } from './public/scripts/portfolio-data.js';
 const html = fs.readFileSync('out/index.html', 'utf8');
 for (const name of fs.readdirSync('public/scripts').filter(n => n.endsWith('.js'))) execFileSync(process.execPath, ['--check', 'public/scripts/' + name]);
 for (const [, resource] of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
-  if (/^(https?:|mailto:|javascript:|\$)/.test(resource)) continue;
+  if (/^(https?:|mailto:|tel:|javascript:|\$)/.test(resource)) continue;
   if (!fs.existsSync('out/' + decodeURIComponent(resource.split('?')[0]))) throw Error('Missing exported asset: ' + resource);
 }
 for (const item of PROJECTS) {

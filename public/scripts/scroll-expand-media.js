@@ -16,6 +16,7 @@ export function initScrollExpandMedia() {
 
   const ASPECT_RATIO = 1024 / 546; // ≈ 1.875457875
 
+  const staticLayout = window.matchMedia('(max-width: 1023px), (max-height: 600px), (prefers-reduced-motion: reduce)');
   let isMobile = window.innerWidth < 768;
   window.addEventListener('resize', () => {
     isMobile = window.innerWidth < 768;
@@ -107,6 +108,7 @@ export function initScrollExpandMedia() {
 
   function renderFrame() {
     rafScheduled = false;
+    if (staticLayout.matches) return;
     const rect = section.getBoundingClientRect();
     const windowHeight = window.innerHeight;
     const totalDist = section.offsetHeight - windowHeight;

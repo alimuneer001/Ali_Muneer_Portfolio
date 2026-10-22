@@ -15,11 +15,11 @@ import('./portfolio-data.js').then(({ PROJECTS }) => {
 
 // Dialog focus management and consistent keyboard dismissal.
 let previousFocus;
-const dialogs = [...document.querySelectorAll('#project-modal, #contact-modal')];
+const dialogs = [...document.querySelectorAll('#project-modal, #contact-modal, #mobile-drawer')];
 dialogs.forEach(dialog => {
   dialog.setAttribute('role', 'dialog');
   dialog.setAttribute('aria-modal', 'true');
-  dialog.setAttribute('aria-label', dialog.id === 'project-modal' ? 'Project details' : 'Contact Ali');
+  dialog.setAttribute('aria-label', dialog.id === 'project-modal' ? 'Project details' : dialog.id === 'mobile-drawer' ? 'Navigation menu' : 'Contact Ali');
   let open = false;
   dialog.inert = true;
   new MutationObserver(() => {
@@ -27,6 +27,8 @@ dialogs.forEach(dialog => {
     if (visible === open) return;
     open = visible;
     dialog.inert = !open;
+    document.body.style.overflow = dialogs.some(node => !node.classList.contains('pointer-events-none')) ? 'hidden' : '';
+    document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', String(!document.getElementById('mobile-drawer').classList.contains('pointer-events-none')));
     if (open) {
       previousFocus = document.activeElement;
       dialog.querySelector('button, input, a')?.focus();

@@ -1,11 +1,12 @@
 import "./globals.css";
 import "./carousel.css";
 import "./personal.css";
+import "./responsive.css";
 
 export const metadata = {
   title: "Ali Muneer — Full Stack Developer (MERN)",
   description:
-    "Ali Muneer, Full Stack Developer at Spadasoft in Lahore, Pakistan. React, Next.js, Node.js and MERN applications.",
+    "Ali Muneer, Full Stack Developer (MERN) and part-time remote Full Stack Engineer at Blink Hint, based in Lahore, Pakistan. React, Next.js, Node.js and MERN applications.",
 };
 export const viewport = {
   themeColor: "#FAFAFA",

@@ -1,4 +1,4 @@
-import { PROJECTS } from './portfolio-data.js';
+import { SHOWCASE_PROJECTS } from './portfolio-data.js';
 /**
  * WorksWheel - 3D Vertical Drum & Ring Portfolio Index Component
  * Vanilla JavaScript Implementation of the WorksWheel React Component
@@ -34,7 +34,7 @@ function place(ringDeg, drumDeg, ringR, drumR, bow, m) {
   );
 }
 
-export const DEFAULT_WORKS = [1,2,3,4,6,7].map(i => PROJECTS[i]);
+export const DEFAULT_WORKS = SHOWCASE_PROJECTS;
 
 export function initWorksWheel(container, options = {}) {
   if (!container) return null;
@@ -337,9 +337,11 @@ export function initWorksWheel(container, options = {}) {
   // Animation Loop (Single rAF pass writing direct DOM transforms)
   let frameId = 0;
   let isRunning = true;
+  let inView = true;
 
   const draw = () => {
-    if (!isRunning) return;
+    frameId = 0;
+    if (!isRunning || !inView || document.hidden) return;
     frameId = requestAnimationFrame(draw);
 
     const gap = target - turn;
@@ -391,7 +393,16 @@ export function initWorksWheel(container, options = {}) {
     }
   };
 
-  frameId = requestAnimationFrame(draw);
+  const resume = () => {
+    if (isRunning && inView && !document.hidden && !frameId) frameId = requestAnimationFrame(draw);
+  };
+  const visibilityObserver = new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting;
+    resume();
+  });
+  visibilityObserver.observe(container);
+  document.addEventListener('visibilitychange', resume);
+  resume();
 
   return {
     to,
@@ -402,6 +413,8 @@ export function initWorksWheel(container, options = {}) {
       isRunning = false;
       cancelAnimationFrame(frameId);
       ro.disconnect();
+      visibilityObserver.disconnect();
+      document.removeEventListener('visibilitychange', resume);
       stageEl.removeEventListener("wheel", onWheel);
       clearTimeout(settlingTimer);
     }

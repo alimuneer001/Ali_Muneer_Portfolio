@@ -1,5 +1,4 @@
-"use client";
-
+import { SKILLS } from "../public/scripts/profile-data";
 export default function Skills() {
   return (
     <section
@@ -12,59 +11,13 @@ export default function Skills() {
       <h2 className="text-3xl md:text-5xl font-black uppercase mb-9">
         {"BUILT ACROSS THE STACK."}
       </h2>
-      <div className="flex flex-wrap gap-3">
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"React.js"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"Next.js"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"TypeScript"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"JavaScript"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"Tailwind CSS"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"Node.js"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"Express.js"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"MongoDB"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"MySQL"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"PostgreSQL"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"Python"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"FastAPI / Django"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"NestJS"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"REST APIs"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"GraphQL"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"WebSockets"}
-        </span>
-        <span className="px-5 py-3 border border-neutral-300 rounded-full text-xs font-semibold">
-          {"GitHub"}
-        </span>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Object.entries(SKILLS).map(([category, skills]) => <div key={category}>
+          <h3 className="font-bold mb-4">{category}</h3>
+          <div className="flex flex-wrap gap-2">{skills.map(skill => <span key={skill} className="px-4 py-2 border border-neutral-300 rounded-full text-xs font-semibold">{skill}</span>)}</div>
+        </div>)}
       </div>
+      <p className="text-sm text-neutral-500 mt-6">Current role also includes Python, PostgreSQL and OpenAI API integration.</p>
       <div className="grid md:grid-cols-2 gap-12 mt-16">
         <div>
           <h3 className="font-black text-xl uppercase mb-6">{"Education"}</h3>

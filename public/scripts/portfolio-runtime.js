@@ -1,34 +1,4 @@
 
-    const projectsData = {};
-
-    // Filter projects
-    function filterProjects(filter) {
-      const tabs = {
-        all: document.getElementById('filter-all'),
-        web: document.getElementById('filter-web'),
-        landing: document.getElementById('filter-landing')
-      };
-
-      Object.keys(tabs).forEach(k => {
-        if (!tabs[k]) return;
-        if (k === filter) {
-          tabs[k].className = 'filter-tab px-6 py-2.5 rounded-full bg-black text-white text-xs font-semibold tracking-wider uppercase shadow-sm transition';
-        } else {
-          tabs[k].className = 'filter-tab px-6 py-2.5 rounded-full bg-white border border-neutral-300 text-neutral-700 hover:border-black text-xs font-semibold tracking-wider uppercase transition';
-        }
-      });
-
-      const cards = document.querySelectorAll('.project-card');
-      cards.forEach(card => {
-        if (filter === 'all') {
-          card.style.display = 'flex';
-        } else if (filter === 'web') {
-          card.style.display = card.classList.contains('web-project') ? 'flex' : 'none';
-        } else if (filter === 'landing') {
-          card.style.display = card.classList.contains('landing-project') ? 'flex' : 'none';
-        }
-      });
-    }
 
     // Services Accordion Logic
     function toggleService(index) {
@@ -83,13 +53,7 @@
     }
 
     // Modal Handlers
-    function openProjectModal(itemOrKey) {
-      let data = null;
-      if (typeof itemOrKey === 'object' && itemOrKey !== null) {
-        data = itemOrKey;
-      } else {
-        data = projectsData[itemOrKey];
-      }
+    function openProjectModal(data) {
       if (!data) return;
 
       const category = data.subtitle || data.category || 'FEATURED PROJECT';
@@ -214,11 +178,6 @@
       showToast('Email draft opened. Send it from your email app to contact Ali.');
     }
 
-    function copyContactEmail() {
-      const email = 'alimuneer001@gmail.com';
-      navigator.clipboard?.writeText(email);
-      showToast('Copied email: alimuneer001@gmail.com');
-    }
 
     function toggleMobileMenu() {
       const drawer = document.getElementById('mobile-drawer');
@@ -296,11 +255,23 @@
     }
   
 Promise.allSettled([
-  import('/scripts/carousel-init.js'),
-  import('/scripts/wheel-init.js'),
   import('/scripts/scroll-expand-media.js'),
   import('/scripts/experience-section.js'),
   import('/scripts/personal.js')
 ]).then(results => results.forEach(result => {
   if (result.status === 'rejected') console.error('Portfolio component failed to load:', result.reason);
 }));
+
+// Load expensive project effects only as their sections approach the viewport.
+const effectObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) continue;
+    effectObserver.unobserve(entry.target);
+    const module = entry.target.id === 'projects' ? 'carousel-init' : 'wheel-init';
+    import(`/scripts/${module}.js`).catch(error => console.error('Project effect unavailable:', error));
+  }
+}, { rootMargin: '300px' });
+for (const id of ['projects', 'landing-pages']) {
+  const section = document.getElementById(id);
+  if (section) effectObserver.observe(section);
+}

@@ -121,7 +121,7 @@ export default function Navigation() {
           onClick={(event) => {
             window.toggleMobileMenu?.();
           }}
-          aria-label="Open Menu"
+          aria-label="Open Menu" aria-controls="mobile-drawer" aria-expanded="false"
           className="md:hidden w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 ml-1"
         >
           <svg

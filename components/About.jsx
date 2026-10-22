@@ -1,4 +1,5 @@
 "use client";
+import { PROFILE } from "../public/scripts/profile-data";
 
 export default function About() {
   return (
@@ -13,7 +14,7 @@ export default function About() {
           className="absolute inset-0 z-0 h-full w-full pointer-events-none transition-opacity duration-150 ease-out"
           style={{ willChange: "opacity", transform: "translateZ(0)" }}
         >
-          <img
+          <img loading="lazy" decoding="async"
             src="/assets/about_starry_castle_hq.jpg?v=10"
             alt="Monochrome Starry Night Castle Background"
             className="w-full h-full object-cover object-center"
@@ -37,7 +38,7 @@ export default function About() {
               }}
             >
               <div className="relative w-full h-full overflow-hidden rounded-xl flex items-center justify-center bg-[#07090E]">
-                <img
+                <img loading="lazy" decoding="async"
                   id="sem-media-img"
                   src="/assets/about_floating_light_hq.png?v=14"
                   alt="Ali Muneer - Ascendance & Digital Craft"
@@ -48,7 +49,7 @@ export default function About() {
                     backfaceVisibility: "hidden",
                   }}
                 />
-                <img
+                <img loading="lazy" decoding="async"
                   id="sem-media-blur"
                   src="/assets/about_floating_light_hq.png?v=14"
                   alt=""
@@ -97,7 +98,7 @@ export default function About() {
                       </div>
                       <p className="text-xs sm:text-[12px] font-medium leading-relaxed tracking-wider uppercase text-neutral-300">
                         {
-                          "\n                      I AM A FULL STACK DEVELOPER AT SPADASOFT, WITH PREVIOUS EXPERIENCE AT CINNOVA TECHNOLOGIES. I BUILD USER-FOCUSED PRODUCTS, FROM RESPONSIVE REACT INTERFACES TO BACKEND SERVICES AND DATABASE DESIGN.\n                    "
+                          PROFILE.summary
                         }
                       </p>
                     </div>

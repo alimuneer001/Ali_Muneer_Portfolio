@@ -51,6 +51,7 @@ export default function Hero() {
           <div className="relative w-[320px] h-[400px] md:w-[480px] md:h-[580px] flex items-end justify-center hero-portrait-mask">
             <img
               src="/assets/ali-portrait.png"
+              width="1086" height="1448" fetchPriority="high" decoding="async"
               alt="Ali Muneer — Full Stack Developer"
               className="w-full h-full object-contain object-bottom pointer-events-none select-none transition-transform duration-700 hover:scale-[1.02]"
             />
@@ -59,7 +60,7 @@ export default function Hero() {
         <div className="md:col-span-3 flex flex-col items-start md:items-end text-left order-3 pt-6 md:pt-0 pr-2 md:pr-6 space-y-10">
           <p className="text-[11px] md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-700 max-w-[220px] text-left">
             {
-              "\n          I BUILD RESPONSIVE INTERFACES AND RELIABLE BACKENDS. REACT.JS, NODE.JS, AND EVERYTHING IN BETWEEN.\n        "
+              "\n          FULL STACK ENGINEER AT BLINK HINT. PART-TIME, REMOTE. REACT.JS, NEXT.JS, PYTHON AND POSTGRESQL.\n        "
             }
           </p>
           <div className="flex flex-col space-y-3 text-[11px] md:text-xs font-semibold tracking-widest text-neutral-600 uppercase">

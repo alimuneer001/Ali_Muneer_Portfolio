@@ -1,31 +1,21 @@
-
-    import { initWorksWheel, DEFAULT_WORKS } from './works-wheel.js';
-
-    function startWorksWheel() {
-      const container = document.getElementById('works-wheel-container');
-      if (container) {
-        const wheelInstance = initWorksWheel(container, {
-          items: DEFAULT_WORKS,
-          label: "Works '26",
-          action: "View",
-          onSelect: (index, item) => {
-            if (window.openProjectModal) {
-              window.openProjectModal(item);
-            }
-          }
-        });
-        window.worksWheelInstance = wheelInstance;
-
-        const prevBtn = document.getElementById('works-wheel-prev-btn');
-        const nextBtn = document.getElementById('works-wheel-next-btn');
-        if (prevBtn) prevBtn.addEventListener('click', () => wheelInstance.prev());
-        if (nextBtn) nextBtn.addEventListener('click', () => wheelInstance.next());
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startWorksWheel);
-    } else {
-      startWorksWheel();
-    }
-  
+const desktop = window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference)');
+let loading = false;
+async function syncWheel() {
+  if (!desktop.matches) {
+    window.worksWheelInstance?.destroy();
+    window.worksWheelInstance = null;
+    return;
+  }
+  if (loading || window.worksWheelInstance) return;
+  loading = true;
+  try {
+    const { initWorksWheel, DEFAULT_WORKS } = await import('./works-wheel.js');
+    if (!desktop.matches) return;
+    window.worksWheelInstance = initWorksWheel(document.getElementById('works-wheel-container'), {
+      items: DEFAULT_WORKS, label: "Works '26", action: 'View',
+      onSelect: (_, item) => window.openProjectModal?.(item)
+    });
+  } finally { loading = false; }
+}
+desktop.addEventListener('change', syncWheel);
+syncWheel();

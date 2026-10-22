@@ -1,3 +1,4 @@
+import FloatingContact from "../components/FloatingContact";
 import ToastContainer from "../components/ToastContainer";
 import Navigation from "../components/Navigation";
 import MobileDrawer from "../components/MobileDrawer";
@@ -27,6 +28,7 @@ export default function Page() {
       <Skills />
       <Services />
       <Contact />
+      <FloatingContact />
       <ProjectModal />
       <ContactModal />
       <Script src="/scripts/portfolio-runtime.js" strategy="afterInteractive" />
