@@ -2,6 +2,8 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
+  <meta name="theme-color" content="#FAFAFA" id="theme-color">
+  <script src="theme.js"></script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Ali Muneer — Full Stack Developer (MERN)</title>
   <meta name="description" content="Ali Muneer, Full Stack Developer at Spadasoft in Lahore, Pakistan. React, Next.js, Node.js and MERN applications.">
@@ -243,6 +245,10 @@
       </a>
 
       <!-- Mobile Hamburger Button -->
+      <button id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+        <svg class="theme-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z"/></svg>
+        <svg class="theme-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+      </button>
       <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open Menu" class="md:hidden w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 ml-1">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" x2="20" y1="7" y2="7"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="17" y2="17"></line></svg>
       </button>
