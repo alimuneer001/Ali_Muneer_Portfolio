@@ -1,5 +1,5 @@
 :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
-.hero-portrait-mask img { filter: none; }
+.hero-portrait-mask img { filter: grayscale(1) brightness(0.72) contrast(1.15); }
 .hero-portrait-mask img { border-radius:0; }
 a[title="WhatsApp"] svg, a[title="Upwork"] svg { display:none; }
 a[title="WhatsApp"]::before { content:'WA'; font-size:10px; font-weight:800; }
